@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Entities;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SleepingFight.Models;
 using System;
