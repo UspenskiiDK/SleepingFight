@@ -1,6 +1,8 @@
+using DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,6 +26,12 @@ namespace SleepingFight
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            //добавим возможность работы с DbContext и подключимся к бд
+            var connection = Configuration.GetConnectionString(name: "DefaultConnection");
+            services.AddDbContext<AppDbContext>(optionsAction: options =>
+                 options.UseSqlServer(connection));
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
