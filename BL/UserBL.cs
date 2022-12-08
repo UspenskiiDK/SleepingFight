@@ -2,11 +2,7 @@
 
 namespace BL
 {
-    internal class UserBL
+    public class UserBL
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-        }
     }
 }

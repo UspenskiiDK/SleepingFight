@@ -21,7 +21,12 @@ namespace SleepingFight.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            User user = new User()
+            {
+                Login = "usp",
+                Password = "123"
+            };
+            return View(user);
         }
 
         public IActionResult Privacy()

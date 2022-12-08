@@ -2,11 +2,7 @@
 
 namespace DAL
 {
-    internal class UserDAL
+    public class UserDAL
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-        }
     }
 }

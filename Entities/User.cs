@@ -8,5 +8,6 @@ namespace Entities
         public string Login { get; set; }
         public string Password { get; set; }
         public DateTime RegistrationDate { get; set; }
+
     }
 }
