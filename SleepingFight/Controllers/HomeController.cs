@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using DAL.Interfaces;
+using Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SleepingFight.Models;
@@ -13,20 +14,17 @@ namespace SleepingFight.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IUserRepo _userRepo;
+        public HomeController(ILogger<HomeController> logger, IUserRepo userRepo)
         {
             _logger = logger;
+            _userRepo = userRepo;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            User user = new User()
-            {
-                Login = "usp",
-                Password = "123"
-            };
-            return View(user);
+            var response = _userRepo.Select();
+            return View();
         }
 
         public IActionResult Privacy()

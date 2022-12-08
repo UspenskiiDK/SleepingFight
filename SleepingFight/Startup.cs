@@ -1,4 +1,6 @@
 using DAL;
+using DAL.Interfaces;
+using DAL.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,7 +33,8 @@ namespace SleepingFight
             var connection = Configuration.GetConnectionString(name: "DefaultConnection");
             services.AddDbContext<AppDbContext>(optionsAction: options =>
                  options.UseSqlServer(connection));
-           
+
+            services.AddScoped<IUserRepo, UserRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
