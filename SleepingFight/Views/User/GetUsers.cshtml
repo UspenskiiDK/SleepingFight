@@ -1,0 +1,7 @@
+﻿@model List<Entities.User>
+
+@foreach (var x in Model){
+    <p>@x.Id</p>
+    <p>@x.Login</p>
+    <p>@x.RegistrationDate</p>
+}

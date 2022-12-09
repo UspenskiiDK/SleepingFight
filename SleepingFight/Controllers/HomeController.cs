@@ -14,16 +14,14 @@ namespace SleepingFight.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IUserRepo _userRepo;
-        public HomeController(ILogger<HomeController> logger, IUserRepo userRepo)
+
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _userRepo = userRepo;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var response = _userRepo.Select();
             return View();
         }
 
