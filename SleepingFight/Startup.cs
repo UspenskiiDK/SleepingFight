@@ -1,3 +1,5 @@
+using BL;
+using BL.Interfaces;
 using DAL;
 using DAL.Interfaces;
 using DAL.Repositories;
@@ -35,6 +37,7 @@ namespace SleepingFight
                  options.UseSqlServer(connection));
 
             services.AddScoped<IUserRepo, UserRepo>();
+            services.AddScoped<IUserBL, UserBL>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
