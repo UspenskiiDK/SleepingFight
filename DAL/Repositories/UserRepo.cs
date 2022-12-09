@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
@@ -18,22 +19,26 @@ namespace DAL.Repositories
 
         public bool Create(User entity)
         {
-            throw new NotImplementedException();
+            _db.User.Add(entity);
+            _db.SaveChanges();
+            return true;
         }
 
         public bool Delete(User entity)
         {
-            throw new NotImplementedException();
+            _db.User.Remove(entity);
+            _db.SaveChanges();
+            return true;
         }
 
         public User Get(int id)
         {
-            throw new NotImplementedException();
+            return  _db.User.FirstOrDefault(x => x.Id == id);
         }
 
         public User GetByLogin(string login)
         {
-            throw new NotImplementedException();
+            return _db.User.FirstOrDefault(x => x.Login == login);
         }
 
         public IEnumerable<User> Select()

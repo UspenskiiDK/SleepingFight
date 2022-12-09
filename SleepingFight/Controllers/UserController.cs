@@ -1,5 +1,7 @@
 ﻿using DAL.Interfaces;
+using Entities;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace SleepingFight.Controllers
 {
@@ -16,7 +18,20 @@ namespace SleepingFight.Controllers
         public IActionResult GetUsers()
         {
             var usersList = _userRepo.Select();
+            var userOne = _userRepo.Get(2);
+            var userL = _userRepo.GetByLogin("vika");
+            User userNew = new User()
+            {
+                Id = 4,
+                Login = "Ya",
+                Password = "23",
+                RegistrationDate = DateTime.Now
+            };
+            _userRepo.Create(userNew);
+            _userRepo.Delete(userNew);
             return View(usersList);
+            
+
         }
     }
 }
