@@ -1,6 +1,7 @@
 ﻿using BL.Interfaces;
 using DAL.Interfaces;
 using Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -28,6 +29,21 @@ namespace SleepingFight.Controllers
         {
             var user = _userBL.GetUserByLogin(login);
             return View(user);
+        }
+
+        [Authorize(Roles = "LeadAdmin")]
+        public IActionResult DeleteUser(string login)
+        {
+            var deleted_user = _userBL.DeleteUser(login);
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "LeadAdmin")] 
+        public IActionResult AddUser(User user)
+        {
+            _userBL.AddUser(user);
+            return View();
         }
     }
 }

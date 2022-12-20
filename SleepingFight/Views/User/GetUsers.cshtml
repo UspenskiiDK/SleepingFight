@@ -1,7 +1,21 @@
 ﻿@model List<Entities.User>
 
-@foreach (var x in Model){
-    <p>@x.Id</p>
-    <p>@x.Login</p>
-    <p>@x.RegistrationDate</p>
+@{
+    Layout = "_Layout";
 }
+
+<table>
+    <tr>
+        <th>Id</th><th>Username</th><th>Registration</th>
+    </tr>
+
+
+    @foreach (var x in Model){
+        <tr>
+            <td>@x.Id</td>
+            <td>@x.Login</td>
+            <td>@x.RegistrationDate</td>
+        </tr>
+    }
+
+</table>
