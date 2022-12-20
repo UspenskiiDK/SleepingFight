@@ -22,5 +22,12 @@ namespace SleepingFight.Controllers
             
             return View(users);
         }
+
+        [HttpGet]
+        public IActionResult GetUser(string login)
+        {
+            var user = _userBL.GetUserByLogin(login);
+            return View(user);
+        }
     }
 }

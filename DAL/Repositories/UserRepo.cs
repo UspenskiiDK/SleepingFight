@@ -31,11 +31,6 @@ namespace DAL.Repositories
             return true;
         }
 
-        public User Get(int id)
-        {
-            return  _db.User.FirstOrDefault(x => x.Id == id);
-        }
-
         public User GetByLogin(string login)
         {
             return _db.User.FirstOrDefault(x => x.Login == login);
