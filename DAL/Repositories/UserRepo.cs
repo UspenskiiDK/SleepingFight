@@ -1,5 +1,6 @@
 ﻿using DAL.Interfaces;
 using Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class UserRepo : IUserRepo
+    public class UserRepo : IMainRepo<User>
     {
         private readonly AppDbContext _db;
 
@@ -17,23 +18,21 @@ namespace DAL.Repositories
             _db = db;
         }
 
-        public bool Create(User entity)
+        public async Task Create(User entity)
         {
-            _db.User.Add(entity);
-            _db.SaveChanges();
-            return true;
+            await _db.User.AddAsync(entity);
+            await _db.SaveChangesAsync();
         }
 
-        public bool Delete(User entity)
+        public async Task Delete(User entity)
         {
             _db.User.Remove(entity);
-            _db.SaveChanges();
-            return true;
+            await _db.SaveChangesAsync();
         }
 
-        public User GetByLogin(string login)
+        public async Task<User> GetByLogin(string login)
         {
-            return _db.User.FirstOrDefault(x => x.Login == login);
+            return await _db.User.FirstOrDefaultAsync(x => x.Login == login);
         }
 
         public IEnumerable<User> Select()

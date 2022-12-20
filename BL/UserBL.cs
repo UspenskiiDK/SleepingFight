@@ -3,19 +3,23 @@ using DAL.Interfaces;
 using Entities;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace BL
 {
     public class UserBL : IUserBL
     {
-        private readonly IUserRepo _userRepo;
+        private readonly IMainRepo<User> _userRepo;
 
-        public UserBL(IUserRepo userRepo)
+        public UserBL(IMainRepo<User> userRepo)
         {
             _userRepo = userRepo;
         }
 
-        public bool AddUser(User user)
+        public async Task AddUser(User user)
         {
             var n_user = new User()
             {
@@ -25,18 +29,15 @@ namespace BL
                 RegistrationDate = DateTime.Now
             };
 
-            _userRepo.Create(n_user);
-            if (n_user == null) return false;
-            return true;
+            await _userRepo.Create(n_user);
+
         }
 
-        public bool DeleteUser(string login)
+        public async Task DeleteUser(string login)
         {
-            var user = _userRepo.GetByLogin(login);
-            if (user == null) return false;
+            var user = await _userRepo.GetByLogin(login);
+            await _userRepo.Delete(user);
 
-            _userRepo.Delete(user);
-            return true;
         }
 
         public IEnumerable<User> GetAll()
@@ -45,10 +46,10 @@ namespace BL
             return users;
         }
 
-        public User GetUserByLogin(string login)
+        public async Task<User> GetUserByLogin(string login)
         {
-            var user = _userRepo.GetByLogin(login);
-            return user;
+            return await _userRepo.GetByLogin(login);
+            
         }
     }
 }

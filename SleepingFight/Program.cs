@@ -22,5 +22,7 @@ namespace SleepingFight
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+        
     }
 }
