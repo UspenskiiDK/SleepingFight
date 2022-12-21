@@ -17,18 +17,47 @@ export default class EnemyController {
     defaultYVelocity = 1;
     moveDownTimerDefault = 30;
     moveDownTimer = this.moveDownTimerDefault;
+    fireBulletTimerDefault = 60;
+    fireBulletTimer = this.fireBulletTimerDefault;
 
-    constructor(canvas) {
+    constructor(canvas, enemyBulletController, playerBulletController) {
         this.canvas = canvas;
+        this.enemyBulletController = enemyBulletController;
+        this.playerBulletController = playerBulletController;
         this.createEnemies();
     }
 
     draw(ctx){
         this.DecrementMoveDownTimer();
         this.updateVelocityAndDirection();
+        this.collisionDetection();
         this.drawEnemies(ctx);
         this.resetMoveDownTimer();
-        console.log(this.moveDownTimer);
+        this.fireBullet();
+
+    }
+
+    collisionDetection() {
+        this.enemyRows.forEach(enemyRow => {
+            enemyRow.forEach((enemy, enemyIndex) => {
+                if (this.playerBulletController.collideWith(enemy)) {
+                    enemyRow.splice(enemyIndex, 1);
+                }
+            });
+        });
+
+        this.enemyRows = this.enemyRows.filter((enemyRow)=>enemyRow.length>0)
+    }
+
+    fireBullet() {
+        this.fireBulletTimer--;
+        if (this.fireBulletTimer <= 0) {
+            this.fireBulletTimer = this.fireBulletTimerDefault;
+            const allEnemies = this.enemyRows.flat();
+            const enemyIndex = Math.floor(Math.random() * allEnemies.length);
+            const enemy = allEnemies[enemyIndex];
+            this.enemyBulletController.shoot(enemy.x + enemy.width / 2, enemy.y, -3);
+        }
     }
 
     resetMoveDownTimer(){
@@ -104,5 +133,9 @@ export default class EnemyController {
                 }
             });
         });
+    }
+
+    collideWith(sprite) {
+        return this.enemyRows.flat().some((enemy)=>enemy.collideWith(sprite))
     }
 }

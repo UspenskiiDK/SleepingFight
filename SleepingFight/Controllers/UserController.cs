@@ -94,6 +94,9 @@ namespace SleepingFight.Controllers
             return RedirectToAction("Home", "Index");
         }
 
+       
+
+      
         public IActionResult Game()
         {
             return View();

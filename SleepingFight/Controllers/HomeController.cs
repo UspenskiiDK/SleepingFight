@@ -32,6 +32,8 @@ namespace SleepingFight.Controllers
             return View("Index");
         }
 
+       
+
         public IActionResult Menu()
         {
             return View();
