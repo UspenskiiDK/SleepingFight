@@ -129,10 +129,10 @@ export default class EnemyController {
             this.enemyRows[rowIndex] = [];
             row.forEach((enemyNumber, enemyIndex)=>{
                 if (enemyNumber > 0){
-                    this.enemyRows[rowIndex].push(new Enemy(enemyIndex*40, rowIndex*40, enemyNumber))
+                    this.enemyRows[rowIndex].push(new Enemy(enemyIndex*40, rowIndex*40))
                 }
             });
-        });
+        }); 
     }
 
     collideWith(sprite) {
