@@ -93,5 +93,10 @@ namespace SleepingFight.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Home", "Index");
         }
+
+        public IActionResult Game()
+        {
+            return View();
+        }
     }
 }
