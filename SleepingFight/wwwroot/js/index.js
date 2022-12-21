@@ -28,14 +28,14 @@ function game() {
     enemyController.draw(ctx);
     player.draw(ctx);
     playerBulletController.draw(ctx);
-        enemyBulletController.draw(ctx);
+    enemyBulletController.draw(ctx);
     }
 }
 
 function displayGameOver() {
     if (isGameOver) {
         let text = Won ? "You Win!!!" : "Game Over";
-        let textOffset = Won ? 3.5 : 5;
+        let textOffset = 5;
 
         ctx.fillStyle = "white";
         ctx.font = "70px Arial";
