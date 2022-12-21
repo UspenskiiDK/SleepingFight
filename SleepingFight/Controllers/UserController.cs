@@ -68,7 +68,7 @@ namespace SleepingFight.Controllers
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(reg));
 
-            return View(regis);
+            return RedirectToAction("Play", "Home");
         }
 
         [HttpGet]
@@ -84,13 +84,14 @@ namespace SleepingFight.Controllers
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(loggie));
 
-            return View(log);
+            return RedirectToAction("Play", "Home");
+            
         }
 
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Home", "Index");
         }
     }
 }

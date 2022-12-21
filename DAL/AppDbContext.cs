@@ -1,6 +1,7 @@
 ﻿using Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace DAL
 {
@@ -12,15 +13,19 @@ namespace DAL
         //добавим сущность User
         public DbSet<User> User { get; set; }
 
+        
         protected override void OnModelCreating(ModelBuilder mb)
         {
-            mb.Entity<User>(mb =>
+            mb.Entity<User>(entity =>
             {
-                mb.Property(x => x.Id).ValueGeneratedOnAdd();
-                mb.Property(x => x.Login).IsRequired();
-                mb.Property(x => x.Password).IsRequired();
+                entity.Property(x => x.Id).ValueGeneratedOnAdd();
+                entity.Property(x => x.Login).IsRequired();
+                entity.Property(x => x.Password).IsRequired();
             });
+
+
         }
 
+       
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DAL.Interfaces;
 using Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SleepingFight.Models;
@@ -20,6 +21,7 @@ namespace SleepingFight.Controllers
             _logger = logger;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             return View();
@@ -27,7 +29,7 @@ namespace SleepingFight.Controllers
 
         public IActionResult Play()
         {
-            return View();
+            return View("Index");
         }
 
         public IActionResult Menu()
