@@ -28,8 +28,8 @@ namespace BL
             {
                 Login = reg.Login,
                 Password = reg.Password,
-                RegistrationDate = DateTime.Now
-                
+                RegistrationDate = DateTime.Now,
+                Status = "Unknown"
             };
 
             await _userRepo.Create(user);

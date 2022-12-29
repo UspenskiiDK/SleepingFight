@@ -9,5 +9,7 @@ namespace Entities
         public string Password { get; set; }
         public DateTime RegistrationDate { get; set; }
 
+        public string Status { get; set; }
+
     }
 }

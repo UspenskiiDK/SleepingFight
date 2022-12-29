@@ -26,7 +26,8 @@ namespace BL
                 Id = user.Id,
                 Login = user.Login,
                 Password = user.Password,
-                RegistrationDate = DateTime.Now
+                RegistrationDate = DateTime.Now,
+                Status = "Unknown"
             };
 
             await _userRepo.Create(n_user);

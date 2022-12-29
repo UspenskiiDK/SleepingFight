@@ -2,3 +2,18 @@
 
 <p><a href="~/User/Game">Play</a></p>
 <p><a href="~/User/GetUsers">Scores</a></p>
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url:'@Url.Action("Index","Home")',
+                data: {
+                    name: 'Ivan',
+                    id: 1
+                },
+            });
+        });
+    </script>
+}
